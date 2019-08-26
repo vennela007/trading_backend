@@ -25,7 +25,7 @@ private static final Logger logger = LoggerFactory.getLogger(StockServiceImpl.cl
 	@Override
 	public List<StockDto> getAllAvailableStocks() {
 		/**
-		 * This method is use to get all available Stocks
+		 * This method is used to get all available Stocks
 		 * 
 		 * 
 		 * @return StockDto is the output which includes stockId, stockName,stockPrice,
@@ -45,5 +45,4 @@ private static final Logger logger = LoggerFactory.getLogger(StockServiceImpl.cl
 		});
 		return stockList;
 	}
-
 }
