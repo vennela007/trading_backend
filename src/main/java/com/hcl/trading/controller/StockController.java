@@ -18,7 +18,6 @@ import com.hcl.trading.service.StockService;
  * @author Venkat
  *
  */
-
 @RestController
 @CrossOrigin(allowedHeaders = { "*", "*/" }, origins = { "*", "*/" })
 @RequestMapping("/api")

@@ -1,12 +1,14 @@
 package com.hcl.trading.service;
 
 import java.time.LocalDate;
+import java.util.Optional;
 
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.web.client.RestTemplate;
 
@@ -17,6 +19,7 @@ import com.hcl.trading.dto.OrderResponseDto;
 import com.hcl.trading.entity.Orders;
 import com.hcl.trading.entity.Stocks;
 import com.hcl.trading.entity.User;
+import com.hcl.trading.exception.CommonException;
 import com.hcl.trading.repository.LatestPriceRepository;
 import com.hcl.trading.repository.OrdersRepository;
 import com.hcl.trading.repository.StockRepository;
@@ -63,10 +66,31 @@ public class OrderServiceImplTest {
 		globalQuoteDto=getGlobalQote();
 	}
 
-	@Test()
-	public void createBookTest()
+	
+	
+	@Test(expected = CommonException.class)
+	public void createBookTest_1()
 	{
-		
+		orderServiceImpl.createOrder(orderRequestDto);
+
+	}
+	
+	@Test(expected = CommonException.class)
+	public void createBookTest_2()
+	{
+		Mockito.when(stockRepository.findById(Mockito.anyInt())).thenReturn(Optional.of(stock));
+		orderServiceImpl.createOrder(orderRequestDto);
+
+	}
+	
+	@Test(expected = CommonException.class)
+	public void createBookTest_3()
+	{
+		Mockito.when(stockRepository.findById(Mockito.anyInt())).thenReturn(Optional.of(stock));
+		Mockito.when(userRepository.findById(Mockito.anyInt())).thenReturn(Optional.of(user));
+		orderRequestDto.setStockQuantity(100);
+		orderServiceImpl.createOrder(orderRequestDto);
+
 	}
 	
 	public OrderRequestDto getOrderRequestDto()
