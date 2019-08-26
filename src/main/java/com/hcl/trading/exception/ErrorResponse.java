@@ -1,4 +1,4 @@
-package com.hcl.trading.Exception;
+package com.hcl.trading.exception;
 
 import java.io.Serializable;
 
