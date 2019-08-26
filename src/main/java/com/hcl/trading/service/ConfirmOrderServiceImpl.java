@@ -5,17 +5,16 @@ package com.hcl.trading.service;
 
 import java.util.Optional;
 
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.hcl.trading.dto.ConfirmOrderRequestDto;
 import com.hcl.trading.dto.ConfirmOrderResponseDto;
-import com.hcl.trading.dto.OrderDto;
 import com.hcl.trading.entity.Orders;
 import com.hcl.trading.entity.StockStatus;
 import com.hcl.trading.entity.Stocks;
 import com.hcl.trading.entity.User;
+import com.hcl.trading.exception.OrderNotFoundException;
 import com.hcl.trading.exception.StocksNotFoundException;
 import com.hcl.trading.exception.UserNotFoundException;
 import com.hcl.trading.repository.OrdersRepository;
@@ -54,7 +53,7 @@ public class ConfirmOrderServiceImpl implements ConfirmOrderService{
 	public ConfirmOrderResponseDto confirmOrder(ConfirmOrderRequestDto confirmOrderRequestDto) {
 		Optional<Orders> order = ordersRepository.findById(confirmOrderRequestDto.getOrderId());
 		if(!order.isPresent())
-			throw new StocksNotFoundException(TradingConstants.ERROR_INVALID_ORDERS);
+			throw new OrderNotFoundException(TradingConstants.ERROR_INVALID_ORDERS);
 		Optional<Stocks> stocks = stockRepository.findById(order.get().getStockId());
 		if(!stocks.isPresent())
 			throw new StocksNotFoundException(TradingConstants.ERROR_INVALID_STOCKS);
@@ -80,11 +79,7 @@ public class ConfirmOrderServiceImpl implements ConfirmOrderService{
 		}
 		
 		stockRepository.save(stocks.get());
-		Orders order1 = ordersRepository.save(order.get());
-		OrderDto orderDto = new OrderDto();
-		BeanUtils.copyProperties(order1, orderDto);
-
-		 emailSender.sendTicket("haripriya517@gmail.com", orderDto);
+		ordersRepository.save(order.get());
 		return confirmOrderResponseDto;
 	}
 

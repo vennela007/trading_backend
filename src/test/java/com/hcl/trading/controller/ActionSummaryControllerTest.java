@@ -8,39 +8,38 @@ import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.hcl.trading.dto.OrderRequestDto;
-import com.hcl.trading.service.OrderServcie;
-
+import com.hcl.trading.service.ActionSummaryService;
+/**
+ * 
+ * @author DeepikaSivarajan
+ *
+ */
 @RunWith(MockitoJUnitRunner.class)
-public class OrderServiceController {
+public class ActionSummaryControllerTest {
+
 	@Mock
-	OrderServcie orderService;
+	ActionSummaryService actionSummaryService;
 	@InjectMocks
-	OrderController orderController;
-	
+	ActionSummaryController actionSummaryController;
+	@Autowired
 	MockMvc mockMvc;
-	
-	OrderRequestDto orderRequestDto;
-	
 
 	@Before
 	public void setUp() {
-		mockMvc = MockMvcBuilders.standaloneSetup(orderController).build();
-		orderRequestDto=getOrderRequestDto();
+		mockMvc = MockMvcBuilders.standaloneSetup(actionSummaryController).build();
 	}
 
 	@Test
-	public void createOrderTest() throws Exception {
-
-		mockMvc.perform(MockMvcRequestBuilders.post("/api/order").contentType(MediaType.APPLICATION_JSON)
-				.accept(MediaType.APPLICATION_JSON).content(asJsonString(orderRequestDto)))
-				.andExpect(status().isCreated());
+	public void testGetAllActionSummary() throws Exception {
+		mockMvc.perform(MockMvcRequestBuilders.get("/api/orders/{userId}", 1).contentType(MediaType.APPLICATION_JSON)
+				.accept(MediaType.APPLICATION_JSON)).andExpect(status().isOk());
 
 	}
 
@@ -50,11 +49,5 @@ public class OrderServiceController {
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
-
 	}
-	public OrderRequestDto getOrderRequestDto()
-	{
-		return new OrderRequestDto(1,1,20,"GOOGL");
-	}
-
 }

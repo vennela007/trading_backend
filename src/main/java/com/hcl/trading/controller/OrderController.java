@@ -20,7 +20,7 @@ import com.hcl.trading.service.OrderServcie;
 @CrossOrigin(allowedHeaders = { "*", "*/" }, origins = { "*", "*/" })
 @RequestMapping("/api")
 public class OrderController {
-	private static Logger LOGGER = LoggerFactory.getLogger(OrderController.class);
+	private static Logger logger = LoggerFactory.getLogger(OrderController.class);
 	@Autowired
 	OrderServcie orderService;
 
@@ -29,7 +29,7 @@ public class OrderController {
 
 	@PostMapping("/order")
 	public ResponseEntity<OrderResponseDto> createOrder(@RequestBody OrderRequestDto orderRequestDto) {
-		LOGGER.info("inside the controller create  order");
+		logger.info("inside the controller create  order");
 		return new ResponseEntity<>(orderService.createOrder(orderRequestDto), HttpStatus.CREATED);
 	}
 
