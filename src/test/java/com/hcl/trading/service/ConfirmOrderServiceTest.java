@@ -25,7 +25,6 @@ import com.hcl.trading.entity.User;
 import com.hcl.trading.repository.OrdersRepository;
 import com.hcl.trading.repository.StockRepository;
 import com.hcl.trading.repository.UserRepository;
-import com.hcl.trading.util.TradingConstants;
 
 /**
  * @author Gurpreet Singh
