@@ -94,7 +94,7 @@ public class OrderServiceImpl implements OrderServcie {
 				latest.getBody().getGlobalQuote().getPrice());
 	}
 
-	private ResponseEntity<GlobalQuoteDto> latestStockPrice(String stockName) {
+	public ResponseEntity<GlobalQuoteDto> latestStockPrice(String stockName) {
 		HttpHeaders headers = new HttpHeaders();
 		headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
 		HttpEntity<String> entity = new HttpEntity<>(headers);
