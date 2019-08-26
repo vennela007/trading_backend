@@ -18,7 +18,6 @@ import org.springframework.web.client.RestTemplate;
 import com.hcl.trading.dto.GlobalQuoteDto;
 import com.hcl.trading.dto.OrderRequestDto;
 import com.hcl.trading.dto.OrderResponseDto;
-import com.hcl.trading.entity.LatestPrice;
 import com.hcl.trading.entity.Orders;
 import com.hcl.trading.entity.StockStatus;
 import com.hcl.trading.entity.Stocks;
@@ -50,10 +49,9 @@ public class OrderServiceImpl implements OrderServcie {
 
 	@Autowired
 	LatestPriceRepository latestPriceRepository;
-	
+
 	@Autowired
 	RestTemplate restTemplate;
-
 
 	/**
 	 * 
@@ -86,34 +84,26 @@ public class OrderServiceImpl implements OrderServcie {
 				.stockQuantity(orderRequestDto.getStockQuantity()).totalPrice(totalPrice)
 				.stockStatus(StockStatus.P.toString()).userId(orderRequestDto.getUserId()).build();
 		orderRepository.save(orders);
-		
-		Optional<LatestPrice> latestPrice = latestPriceRepository.findByStockId(orders.getStockId());
-		if (!latestPrice.isPresent())
-			throw new CommonException(TradingConstants.ERROR_LATEST_STOCK_PRICE);
+//		Optional<LatestPrice> latestPrice = latestPriceRepository.findByStockId(orders.getStockId());
+//		if (!latestPrice.isPresent())
+//			throw new CommonException(TradingConstants.ERROR_LATEST_STOCK_PRICE);
+//		return new OrderResponseDto(orders.getOrderId(), stock.get().getStockPrice(),
+//				latestPrice.get().getCurrentPrice());
+		ResponseEntity<GlobalQuoteDto> latest = latestStockPrice(stock.get().getStockName());
 		return new OrderResponseDto(orders.getOrderId(), stock.get().getStockPrice(),
-				latestPrice.get().getCurrentPrice());
-		
-//		ResponseEntity<GlobalQuoteDto> latest=latestStockPrice(stock.get().getStockName());
-//		LOGGER.info("hello:",latest.getBody().getGlobalQuote().getPrice());
-//		
-//		return new OrderResponseDto(1, 1.0, 1.0);
+				latest.getBody().getGlobalQuote().getPrice());
 	}
-	
+
 	private ResponseEntity<GlobalQuoteDto> latestStockPrice(String stockName) {
 		HttpHeaders headers = new HttpHeaders();
 		headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
 		HttpEntity<String> entity = new HttpEntity<>(headers);
 
-		return new ResponseEntity<GlobalQuoteDto>(restTemplate
-				.exchange("https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol="+stockName+"&apikey=CQA8OG03A7GVM5ZU", HttpMethod.GET, entity, GlobalQuoteDto.class)
-				.getBody(),HttpStatus.OK);
-		
-		
+		return new ResponseEntity<GlobalQuoteDto>(
+				restTemplate.exchange("https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=" + stockName
+						+ "&apikey=CQA8OG03A7GVM5ZU", HttpMethod.GET, entity, GlobalQuoteDto.class).getBody(),
+				HttpStatus.OK);
 
 	}
-	
-	
-
-
 
 }
