@@ -13,6 +13,10 @@ import com.hcl.trading.repository.OrdersRepository;
 import com.hcl.trading.repository.StockRepository;
 import com.hcl.trading.util.TradingConstants;
 
+/**
+ * @author DeepikaSivarajan
+ *
+ */
 @Service
 public class TrendingServiceImpl implements TrendingService {
 	private static Logger logger = LoggerFactory.getLogger(TrendingServiceImpl.class);
@@ -20,6 +24,13 @@ public class TrendingServiceImpl implements TrendingService {
 	OrdersRepository ordersRepository;
 	@Autowired
 	StockRepository stockRepository;
+
+	/**
+	 * This method is intended to list trending stocks based on the count
+	 * 
+	 * @exception OrdersNotFoundException is used if no orders are present
+	 * @return TrendingResponseDto which includes stockId,stockName,count
+	 */
 
 	@Override
 	public List<TrendingResponseDto> getAllTrendingStocks() {

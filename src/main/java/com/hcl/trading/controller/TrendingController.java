@@ -15,6 +15,10 @@ import org.springframework.web.bind.annotation.RestController;
 import com.hcl.trading.dto.TrendingResponseDto;
 import com.hcl.trading.service.TrendingService;
 
+/**
+ * @author DeepikaSivarajan
+ *
+ */
 @RestController
 @CrossOrigin(allowedHeaders = { "*", "*/" }, origins = { "*", "*/" })
 @RequestMapping("/api")
@@ -22,6 +26,12 @@ public class TrendingController {
 	private static Logger logger = LoggerFactory.getLogger(TrendingController.class);
 	@Autowired
 	TrendingService trendingService;
+
+	/**
+	 * This method is intended to list trending stocks based on the count
+	 * 
+	 * @return TrendingResponseDto which includes stockId,stockName,count
+	 */
 
 	@GetMapping("/trending")
 	public ResponseEntity<List<TrendingResponseDto>> getAllTrendingStocks() {

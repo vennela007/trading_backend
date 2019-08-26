@@ -18,6 +18,10 @@ import com.hcl.trading.repository.OrdersRepository;
 import com.hcl.trading.repository.StockRepository;
 import com.hcl.trading.util.TradingConstants;
 
+/**
+ * @author DeepikaSivarajan
+ *
+ */
 @Service
 public class ActionSummaryServiceImpl implements ActionSummaryService {
 	private static Logger logger = LoggerFactory.getLogger(ActionSummaryServiceImpl.class);
@@ -25,6 +29,17 @@ public class ActionSummaryServiceImpl implements ActionSummaryService {
 	StockRepository stockRepository;
 	@Autowired
 	OrdersRepository ordersRepository;
+
+	/**
+	 * This method is intended to list confirmed or cancelled orders for user
+	 * 
+	 * @param userId is the input request
+	 * @exception OrdersNotFoundException and StocksNotFoundException if no order
+	 *                                    and stocks is present
+	 * @return it returns ActionSummaryResponseDto list which includes
+	 *         stockId,stockExchangeName,
+	 *         stockName,stockQuantity,totalPrice,creationDate,settlementDate,stockStatus
+	 */
 
 	@Override
 	public List<ActionSummaryResponseDto> getAllActionSummary(Integer userId) {

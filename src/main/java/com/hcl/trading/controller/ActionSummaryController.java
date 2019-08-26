@@ -16,17 +16,31 @@ import org.springframework.web.bind.annotation.RestController;
 import com.hcl.trading.dto.ActionSummaryResponseDto;
 import com.hcl.trading.service.ActionSummaryService;
 
+/**
+ * @author DeepikaSivarajan
+ *
+ */
+
 @RestController
-@CrossOrigin(allowedHeaders= {"*","*/"},origins={"*","*/"})
+@CrossOrigin(allowedHeaders = { "*", "*/" }, origins = { "*", "*/" })
 @RequestMapping("/api")
 public class ActionSummaryController {
 	private static Logger logger = LoggerFactory.getLogger(ActionSummaryController.class);
-	
+
 	@Autowired
 	ActionSummaryService actionSummaryService;
-	
+
+	/**
+	 * This method is intended to list confirmed or cancelled orders for user
+	 * 
+	 * @param userId is the input request
+	 * @return it returns ActionSummaryResponseDto list which includes
+	 *         stockId,stockExchangeName,
+	 *         stockName,stockQuantity,totalPrice,creationDate,settlementDate,stockStatus
+	 */
+
 	@GetMapping("/orders/{userId}")
-	public ResponseEntity<List<ActionSummaryResponseDto>> getAllActionSummary(@PathVariable Integer userId){
+	public ResponseEntity<List<ActionSummaryResponseDto>> getAllActionSummary(@PathVariable Integer userId) {
 		logger.info("action summary");
 		List<ActionSummaryResponseDto> response = actionSummaryService.getAllActionSummary(userId);
 		return new ResponseEntity<>(response, HttpStatus.OK);
