@@ -14,17 +14,18 @@ import lombok.Setter;
  * @author Gurpreet Singh
  *
  */
+
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class OrderStatusResponseDto implements Serializable {
-
+public class ConfirmOrderRequestDto implements Serializable{
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	private String message;
+	private Integer orderId;
+	private String stockstatus;
 
 }

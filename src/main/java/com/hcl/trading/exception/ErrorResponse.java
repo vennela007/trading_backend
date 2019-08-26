@@ -1,7 +1,4 @@
-/**
- * 
- */
-package com.hcl.trading.dto;
+package com.hcl.trading.exception;
 
 import java.io.Serializable;
 
@@ -10,23 +7,16 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-/**
- * @author Gurpreet Singh
- *
- */
-
-@Getter
 @Setter
+@Getter
 @AllArgsConstructor
 @NoArgsConstructor
-public class OrderStatusRequestDto implements Serializable{
+public class ErrorResponse implements Serializable {
 	/**
-	 * 
-	 */
+	* 
+	*/
 	private static final long serialVersionUID = 1L;
-	
-	private Integer stockId;
-	private Integer userId;
-	private String stockstatus;
+	private Integer statusCode;
+	private String message;
 
 }

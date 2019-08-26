@@ -10,33 +10,46 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.hcl.trading.dto.OrderStatusRequestDto;
-import com.hcl.trading.dto.OrderStatusResponseDto;
-import com.hcl.trading.service.OrderStatusServiceImpl;
+import com.hcl.trading.dto.ConfirmOrderRequestDto;
+import com.hcl.trading.dto.ConfirmOrderResponseDto;
+import com.hcl.trading.service.ConfirmOrderServiceImpl;
 
 /**
  * @author Gurpreet Singh
  * This is the controller class for order status
  *
  */
+/**
+ * @author user1
+ *
+ */
+/**
+ * @author user1
+ *
+ */
 @RestController
 @RequestMapping("/api")
 @CrossOrigin(allowedHeaders = {"*", "*/"}, origins = {"*", "*/"})
-public class OrderStatusController {
+public class ConfirmOrderController {
 	
-	public static final Logger LOGGER = LoggerFactory.getLogger(OrderStatusController.class);
+	public static final Logger LOGGER = LoggerFactory.getLogger(ConfirmOrderController.class);
 	
 	@Autowired
-	OrderStatusServiceImpl orderStatusServiceImpl;
+	ConfirmOrderServiceImpl confirmOrderServiceImpl;
+	
+	
+	
 	
 	@PutMapping("/action")
-	public ResponseEntity<OrderStatusResponseDto> confirmOrder(OrderStatusRequestDto orderStatusRequestDto)
+	public ResponseEntity<ConfirmOrderResponseDto> confirmOrder(@RequestBody ConfirmOrderRequestDto confirmOrderRequestDto)
+	
 	{
 		LOGGER.info("in confirmOrder() method ");
-		OrderStatusResponseDto response = orderStatusServiceImpl.confirmOrder(orderStatusRequestDto);
+		ConfirmOrderResponseDto response = confirmOrderServiceImpl.confirmOrder(confirmOrderRequestDto);
 		return new ResponseEntity<>(response, HttpStatus.OK);
 	}
 }
