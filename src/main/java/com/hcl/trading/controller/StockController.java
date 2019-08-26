@@ -28,7 +28,6 @@ private static final Logger logger = LoggerFactory.getLogger(StockController.cla
 
 @GetMapping("/getAllStocks")
 	public ResponseEntity<List<StockDto>> getAllStocks(){
-	
 	/*
 	 * this method is to get all available Stocks list
 	 * */

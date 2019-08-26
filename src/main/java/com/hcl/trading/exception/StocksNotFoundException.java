@@ -8,8 +8,6 @@ public class StocksNotFoundException extends RuntimeException implements Seriali
 
 	public StocksNotFoundException(String message) {
 		super(message);
-
 	}
-
 
 }

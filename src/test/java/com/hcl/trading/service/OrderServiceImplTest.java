@@ -3,6 +3,7 @@ package com.hcl.trading.service;
 import java.time.LocalDate;
 
 import org.junit.Before;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -62,20 +63,11 @@ public class OrderServiceImplTest {
 		globalQuoteDto=getGlobalQote();
 	}
 
-//	@Test()
-//	public void createBookTest()
-//	{
-//		Mockito.when(stockRepository.findById(Mockito.anyInt())).thenReturn(Optional.of(stock));
-//		Mockito.when(userRepository.findById(Mockito.anyInt())).thenReturn(Optional.of(user));
-//		Mockito.when(orderRepository.save(Mockito.any())).thenReturn(orders);
-//		OrderResponseDto orderResponseDto=orderServiceImpl.createOrder(orderRequestDto);
-//		Mockito
-//        .when(restTemplate.exchange("https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=GOOGL&apikey=CQA8OG03A7GVM5ZU", GlobalQuoteDto.class))
-//        .thenReturn(new ResponseEntity(emp, HttpStatus.OK));
-//		
-////		orderServiceImpl.latestStockPrice("GOOGL");
-//		Assert.assertEquals(1, 1);
-//	}
+	@Test()
+	public void createBookTest()
+	{
+		
+	}
 	
 	public OrderRequestDto getOrderRequestDto()
 	{

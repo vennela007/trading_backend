@@ -1,20 +1,24 @@
+/**
+ * 
+ */
 package com.hcl.trading.exception;
 
 /**
  * @author Gurpreet Singh
  *
  */
-public class UserNotFoundException extends RuntimeException {
+public class OrderNotFoundException extends RuntimeException {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public UserNotFoundException(String message) {
+	public OrderNotFoundException(String message) {
 		super(message);
 	}
 	
-}
+	
 	
 
+}
