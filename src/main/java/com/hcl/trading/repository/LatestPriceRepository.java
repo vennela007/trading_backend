@@ -1,15 +1,14 @@
 package com.hcl.trading.repository;
 
 import java.util.Optional;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.hcl.trading.entity.User;
-
+import com.hcl.trading.entity.LatestPrice;
 
 @Repository
-public interface UserRepository extends JpaRepository<User, Integer> {
-
-	public Optional<User> findByUserNameAndPassword(String userName, String password);
+public interface LatestPriceRepository extends JpaRepository<LatestPrice, Integer>{
+	Optional<LatestPrice> findByStockId(Integer stockId);
 
 }
