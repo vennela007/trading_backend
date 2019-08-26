@@ -16,8 +16,8 @@ import com.hcl.trading.util.PasswordUtil;
 import com.hcl.trading.util.TradingConstants;
 
 @Service
-public class LoginServiceimpl implements LoginService {
-	private static final Logger logger = LoggerFactory.getLogger(LoginServiceimpl.class);
+public class LoginServiceImpl implements LoginService {
+	private static final Logger logger = LoggerFactory.getLogger(LoginServiceImpl.class);
 	@Autowired
 	UserRepository userRepository;
 	@Autowired
@@ -36,5 +36,4 @@ public class LoginServiceimpl implements LoginService {
 		loginResponseDto.setUserId(user.get().getUserId());
 		return loginResponseDto;
 	}
-
 }
