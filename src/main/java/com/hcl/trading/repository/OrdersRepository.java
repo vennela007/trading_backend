@@ -13,8 +13,8 @@ import com.hcl.trading.entity.Orders;
 public interface OrdersRepository extends JpaRepository<Orders, Integer> {
 
 	List<Orders> findByUserId(Integer userId);
-		
+
 	@Query("select New com.hcl.trading.dto.TrendingResponseDto (o.stockId,s.stockName, count(o.stockId) as count) from Orders o,Stocks s where o.stockStatus='C' and o.stockId=s.stockId group by o.stockId")
-	List<TrendingResponseDto>  getToptrendings();
+	List<TrendingResponseDto> getToptrendings();
 
 }
