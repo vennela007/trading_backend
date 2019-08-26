@@ -76,7 +76,7 @@ public class OrderServiceImpl implements OrderServcie {
 			throw new CommonException(TradingConstants.ERROR_USER_NOT_FOUND);
 		if (orderRequestDto.getStockQuantity() >= 100)
 			throw new CommonException(TradingConstants.ERROR_QUANTITY);
-		Double brokeragePercent = Double.valueOf(stock.get().getBrokerageAmount() / 100);
+		Double brokeragePercent = Double.valueOf(stock.get().getBrokerageAmount() / 100d);
 		Double brokerageAmount = stock.get().getStockPrice() * orderRequestDto.getStockQuantity() + brokeragePercent;
 		Double totalPrice = stock.get().getStockPrice() * orderRequestDto.getStockQuantity() + brokerageAmount;
 
