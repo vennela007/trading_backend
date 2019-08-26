@@ -1,5 +1,8 @@
 package com.hcl.trading.repository;
-
-public interface StockRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+import com.hcl.trading.entity.Stocks;
+@Repository
+public interface StockRepository extends JpaRepository<Stocks, Integer>{
 
 }
