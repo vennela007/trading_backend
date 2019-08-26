@@ -80,11 +80,6 @@ public class ConfirmOrderServiceImpl implements ConfirmOrderService{
 		
 		stockRepository.save(stocks.get());
 		ordersRepository.save(order.get());
-//		Orders order1 = ordersRepository.save(order.get());
-//		OrderDto orderDto = new OrderDto();
-//		BeanUtils.copyProperties(order1, orderDto);
-
-//		 emailSender.sendTicket("haripriya517@gmail.com", orderDto);
 		return confirmOrderResponseDto;
 	}
 

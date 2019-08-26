@@ -84,11 +84,6 @@ public class OrderServiceImpl implements OrderServcie {
 				.stockQuantity(orderRequestDto.getStockQuantity()).totalPrice(totalPrice)
 				.stockStatus(StockStatus.P.toString()).userId(orderRequestDto.getUserId()).build();
 		orderRepository.save(orders);
-//		Optional<LatestPrice> latestPrice = latestPriceRepository.findByStockId(orders.getStockId());
-//		if (!latestPrice.isPresent())
-//			throw new CommonException(TradingConstants.ERROR_LATEST_STOCK_PRICE);
-//		return new OrderResponseDto(orders.getOrderId(), stock.get().getStockPrice(),
-//				latestPrice.get().getCurrentPrice());
 		ResponseEntity<GlobalQuoteDto> latest = latestStockPrice(stock.get().getStockName());
 		return new OrderResponseDto(orders.getOrderId(), stock.get().getStockPrice(),
 				latest.getBody().getGlobalQuote().getPrice());
