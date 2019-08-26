@@ -5,13 +5,11 @@ package com.hcl.trading.service;
 
 import java.util.Optional;
 
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.hcl.trading.dto.ConfirmOrderRequestDto;
 import com.hcl.trading.dto.ConfirmOrderResponseDto;
-import com.hcl.trading.dto.OrderDto;
 import com.hcl.trading.entity.Orders;
 import com.hcl.trading.entity.StockStatus;
 import com.hcl.trading.entity.Stocks;
@@ -80,11 +78,12 @@ public class ConfirmOrderServiceImpl implements ConfirmOrderService{
 		}
 		
 		stockRepository.save(stocks.get());
-		Orders order1 = ordersRepository.save(order.get());
-		OrderDto orderDto = new OrderDto();
-		BeanUtils.copyProperties(order1, orderDto);
+		ordersRepository.save(order.get());
+//		Orders order1 = ordersRepository.save(order.get());
+//		OrderDto orderDto = new OrderDto();
+//		BeanUtils.copyProperties(order1, orderDto);
 
-		 emailSender.sendTicket("haripriya517@gmail.com", orderDto);
+//		 emailSender.sendTicket("haripriya517@gmail.com", orderDto);
 		return confirmOrderResponseDto;
 	}
 

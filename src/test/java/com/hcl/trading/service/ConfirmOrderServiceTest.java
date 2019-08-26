@@ -122,7 +122,7 @@ public class ConfirmOrderServiceTest {
 	@Test
 	public void testConfirmOrder()
 	{
-		Mockito.when(ordersRepository.findById(confirmOrderRequestDto.getOrderId())).thenReturn(Optional.of(order));
+		Mockito.when(ordersRepository.findById(Mockito.anyInt())).thenReturn(Optional.of(order));
 		Mockito.when(stockRepository.findById(Mockito.anyInt())).thenReturn(Optional.of(stock));
 		Mockito.when(userRepository.findById(Mockito.anyInt())).thenReturn(Optional.of(user));
 		Mockito.when(stockRepository.save(Mockito.any())).thenReturn(stock);
