@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 import com.hcl.trading.dto.TrendingResponseDto;
 import com.hcl.trading.exception.OrdersNotFoundException;
 import com.hcl.trading.repository.OrdersRepository;
-import com.hcl.trading.repository.StockRepository;
 import com.hcl.trading.util.TradingConstants;
 
 /**
@@ -22,8 +21,6 @@ public class TrendingServiceImpl implements TrendingService {
 	private static Logger logger = LoggerFactory.getLogger(TrendingServiceImpl.class);
 	@Autowired
 	OrdersRepository ordersRepository;
-	@Autowired
-	StockRepository stockRepository;
 
 	/**
 	 * This method is intended to list trending stocks based on the count
