@@ -27,12 +27,11 @@ public class LoginServiceimpl implements LoginService {
 	@Override
 	public LoginResponseDto loginUser(LoginDto loginDto) {
 		logger.info("inside the loginUser method of serviceimple");
-		Optional<User> user = userRepository.findByUserNameAndPassword(loginDto.getUserName(),
-				passwordUtil.encodePassword(loginDto.getPassword()));
+		Optional<User> user = userRepository.findByUserNameAndPassword(loginDto.getUserName(), loginDto.getPassword());
 		if (!user.isPresent())
 			throw new UserNotFoundException(TradingConstants.ERROR_INVALID_CREDENTIALS);
-	
-		loginResponseDto=new LoginResponseDto();
+
+		loginResponseDto = new LoginResponseDto();
 		loginResponseDto.setMessage("login successful");
 		loginResponseDto.setUserId(user.get().getUserId());
 		return loginResponseDto;

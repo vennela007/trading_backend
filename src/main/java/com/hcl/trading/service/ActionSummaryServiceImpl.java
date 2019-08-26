@@ -34,11 +34,18 @@ public class ActionSummaryServiceImpl implements ActionSummaryService {
 			throw new OrdersNotFoundException(TradingConstants.ORDERS_NOT_FOUND + userId);
 		} else {
 			orders.stream().forEach(o -> {
+				//String status = null;
 
 				Optional<Stocks> stocks = stockRepository.findById(o.getStockId());
 				if (!stocks.isPresent()) {
 					throw new StocksNotFoundException(TradingConstants.STOCKS_NOT_FOUND + o.getStockId());
 				} else {
+//					if (o.getStockStatus().equalsIgnoreCase("P"))
+//						status = "Pending";
+//					else if (o.getStockStatus().equalsIgnoreCase("C"))
+//						status = "Confirmed";
+//					else
+//						status = "Rejected";
 					ActionSummaryResponseDto actionSummaryResponseDto = ActionSummaryResponseDto.builder()
 							.creationDate(o.getCreationDate()).settlementDate(o.getSettlementDate())
 							.stockExchangeName(stocks.get().getStockExchangeName()).stockId(stocks.get().getStockId())
