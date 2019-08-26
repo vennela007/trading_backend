@@ -13,9 +13,15 @@ public class GlobalExceptionHandler {
 		return new ResponseEntity<>(new ErrorResponse(HttpStatus.NOT_FOUND.value(), e.getMessage()),
 				HttpStatus.NOT_FOUND);
 	}
-		@ExceptionHandler(StockNotFoundException.class)
-		public ResponseEntity<ErrorResponse> noStockFoundException(Exception e) {
-			return new ResponseEntity<>(new ErrorResponse(HttpStatus.NOT_FOUND.value(), e.getMessage()),
-					HttpStatus.NOT_FOUND);
-		}
+		
+		@ExceptionHandler(OrdersNotFoundException.class)
+	public ResponseEntity<ErrorResponse> ordersNotFoundException(Exception e) {
+		return new ResponseEntity<>(new ErrorResponse(HttpStatus.NOT_FOUND.value(), e.getMessage()),
+				HttpStatus.NOT_FOUND);
+	}
+	@ExceptionHandler(StocksNotFoundException.class)
+	public ResponseEntity<ErrorResponse> stocksNotFoundException(Exception e) {
+		return new ResponseEntity<>(new ErrorResponse(HttpStatus.NOT_FOUND.value(), e.getMessage()),
+				HttpStatus.NOT_FOUND);
+	}
 }
