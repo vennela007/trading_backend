@@ -1,14 +1,7 @@
-package com.hcl.trading.entity;
+package com.hcl.trading.dto;
 
 import java.io.Serializable;
 import java.time.LocalDate;
-
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-
-import org.hibernate.annotations.CreationTimestamp;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -16,26 +9,20 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Entity
-@Getter
 @Setter
+@Getter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Orders implements Serializable {
+public class ActionSummaryResponseDto implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Integer orderId;
 	private Integer stockId;
+	private String stockExchangeName;
+	private String stockName;
 	private Integer stockQuantity;
 	private Double totalPrice;
-	@CreationTimestamp
 	private LocalDate creationDate;
-	@CreationTimestamp
 	private LocalDate settlementDate;
 	private String stockStatus;
-	private Integer userId;
-
 }

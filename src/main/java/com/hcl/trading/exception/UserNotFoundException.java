@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.hcl.trading.exception;
 
 /**
@@ -18,6 +15,6 @@ public class UserNotFoundException extends RuntimeException {
 		super(message);
 	}
 	
+}
 	
 
-}

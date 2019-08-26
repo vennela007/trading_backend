@@ -27,4 +27,29 @@ public class GlobalExceptionHandler {
 	}
 	
 	
+
+	@ExceptionHandler(CommonException.class)
+	public ResponseEntity<ErrorResponse> commonException(Exception e) {
+		return new ResponseEntity<>(new ErrorResponse(HttpStatus.NOT_FOUND.value(), e.getMessage()),
+				HttpStatus.NOT_FOUND);
+	}
+
+	@ExceptionHandler(Exception.class)
+	public ResponseEntity<ErrorResponse> handleAllException(Exception e) {
+		return new ResponseEntity<>(new ErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR.value(), e.getMessage()),
+				HttpStatus.INTERNAL_SERVER_ERROR);
+	}
+
+
+	@ExceptionHandler(UserNotFoundException.class)
+	public ResponseEntity<ErrorResponse> noUserFoundException(Exception e) {
+		return new ResponseEntity<>(new ErrorResponse(HttpStatus.NOT_FOUND.value(), e.getMessage()),
+				HttpStatus.NOT_FOUND);
+	}
+		
+		@ExceptionHandler(OrdersNotFoundException.class)
+	public ResponseEntity<ErrorResponse> ordersNotFoundException(Exception e) {
+		return new ResponseEntity<>(new ErrorResponse(HttpStatus.NOT_FOUND.value(), e.getMessage()),
+				HttpStatus.NOT_FOUND);
+	}
 }

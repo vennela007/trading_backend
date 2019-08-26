@@ -9,15 +9,14 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@NoArgsConstructor
 @AllArgsConstructor
-public class OrderResponseDto implements Serializable {
+@NoArgsConstructor
+public class LoginResponseDto implements Serializable{
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private Integer orderId;
-	private Double actualStockPrice;
-	private Double latestPrice;
+	private Integer userId;
+	private String message;
 }

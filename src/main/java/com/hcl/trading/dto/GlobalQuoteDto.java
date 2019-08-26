@@ -2,6 +2,8 @@ package com.hcl.trading.dto;
 
 import java.io.Serializable;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,13 +13,14 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class OrderResponseDto implements Serializable {
+public class GlobalQuoteDto implements Serializable{
 
+	
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private Integer orderId;
-	private Double actualStockPrice;
-	private Double latestPrice;
+	@JsonProperty("Global Quote")
+	private LatestStockPriceDto globalQuote;
+
 }

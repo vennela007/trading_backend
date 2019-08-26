@@ -7,17 +7,17 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Getter
 @Setter
-@NoArgsConstructor
+@Getter
 @AllArgsConstructor
-public class OrderResponseDto implements Serializable {
+@NoArgsConstructor
+public class LoginDto implements Serializable{
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private Integer orderId;
-	private Double actualStockPrice;
-	private Double latestPrice;
+	private String userName;
+	private String password;
+	
 }
