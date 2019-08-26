@@ -14,6 +14,7 @@ import com.hcl.trading.entity.Orders;
 import com.hcl.trading.entity.StockStatus;
 import com.hcl.trading.entity.Stocks;
 import com.hcl.trading.entity.User;
+import com.hcl.trading.exception.OrderNotFoundException;
 import com.hcl.trading.exception.StocksNotFoundException;
 import com.hcl.trading.exception.UserNotFoundException;
 import com.hcl.trading.repository.OrdersRepository;
@@ -52,7 +53,7 @@ public class ConfirmOrderServiceImpl implements ConfirmOrderService{
 	public ConfirmOrderResponseDto confirmOrder(ConfirmOrderRequestDto confirmOrderRequestDto) {
 		Optional<Orders> order = ordersRepository.findById(confirmOrderRequestDto.getOrderId());
 		if(!order.isPresent())
-			throw new StocksNotFoundException(TradingConstants.ERROR_INVALID_ORDERS);
+			throw new OrderNotFoundException(TradingConstants.ERROR_INVALID_ORDERS);
 		Optional<Stocks> stocks = stockRepository.findById(order.get().getStockId());
 		if(!stocks.isPresent())
 			throw new StocksNotFoundException(TradingConstants.ERROR_INVALID_STOCKS);
