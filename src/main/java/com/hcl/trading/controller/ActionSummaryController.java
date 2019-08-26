@@ -25,7 +25,7 @@ import com.hcl.trading.service.ActionSummaryService;
 @CrossOrigin(allowedHeaders = { "*", "*/" }, origins = { "*", "*/" })
 @RequestMapping("/api")
 public class ActionSummaryController {
-	private static Logger LOGGER = LoggerFactory.getLogger(ActionSummaryController.class);
+	private static Logger logger = LoggerFactory.getLogger(ActionSummaryController.class);
 
 	@Autowired
 	ActionSummaryService actionSummaryService;
@@ -41,7 +41,7 @@ public class ActionSummaryController {
 
 	@GetMapping("/orders/{userId}")
 	public ResponseEntity<List<ActionSummaryResponseDto>> getAllActionSummary(@PathVariable Integer userId) {
-		LOGGER.info("action summary");
+		logger.info("action summary");
 		List<ActionSummaryResponseDto> response = actionSummaryService.getAllActionSummary(userId);
 		return new ResponseEntity<>(response, HttpStatus.OK);
 	}

@@ -23,14 +23,6 @@ import com.hcl.trading.service.ConfirmOrderServiceImpl;
  * This is the controller class for order status
  *
  */
-/**
- * @author user1
- *
- */
-/**
- * @author user1
- *
- */
 @RestController
 @RequestMapping("/api")
 @CrossOrigin(allowedHeaders = {"*", "*/"}, origins = {"*", "*/"})
@@ -40,9 +32,6 @@ public class ConfirmOrderController {
 	
 	@Autowired
 	ConfirmOrderServiceImpl confirmOrderServiceImpl;
-	
-	
-	
 	
 	@PutMapping("/action")
 	public ResponseEntity<ConfirmOrderResponseDto> confirmOrder(@RequestBody ConfirmOrderRequestDto confirmOrderRequestDto)
