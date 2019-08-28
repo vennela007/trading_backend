@@ -76,7 +76,7 @@ public class ConfirmOrderServiceImpl implements ConfirmOrderService{
 			order.get().setSettlementDate(order.get().getCreationDate());
 			confirmOrderResponseDto = new ConfirmOrderResponseDto();
 			confirmOrderResponseDto.setMessage("Order rejected");
-		}
+		} 
 		
 		stockRepository.save(stocks.get());
 		ordersRepository.save(order.get());
